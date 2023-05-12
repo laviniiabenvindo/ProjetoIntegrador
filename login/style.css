@@ -109,3 +109,54 @@ span h3{
 .icon{
     height: 50px;
 }
+@media screen and (max-width: 730px){
+    main{
+        display: flex;
+        height: 100vh;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    main section{
+        width: 500px;
+        height: 550px;
+        border-radius: 15px;
+        background-color: #E5DDF3;
+    }
+    main section article h1{
+        margin-top: 10px;
+        font-weight: 400;
+        font-size: 45px;
+        margin-bottom: -50px;
+    }
+    main section article form input{
+        border: none;
+        width: 430px;
+        height: 70px;
+        font-size: 20px;
+        text-align: center;
+        border-radius: 30px;
+        background: #B19CD9;
+    }
+    .underline{
+        width: 430px;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #000;
+    }
+    span{
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+    .icons{
+        margin-top: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+    .icon{
+        height: 30px;
+    }
+}
