@@ -1,12 +1,34 @@
-const nome = document.getElementById('name'), email = document.getElementById('email'), form = document.getElementById('form'), erro = document.getElementById('erro');
+const form = document.getElementById('form');
+const campos = document.querySelectorAll('.required');
+const spans = document.querySelectorAll('.obrigatorio')
+const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
 form.addEventListener('submit', (event)=>{
-//   alert('Hello Mundo!')
-    let messages = []
-    if(nome.value === '' || nome.value === null){
-        messages.push('O campo nome é obrigatório').join('');
-    }
-    if(email.value === '' || email.value === null){
-        messages.push('O campo e-mail é obrigatório').join('');
-    }
+    event.preventDefault();
+    nameValidate();
+    emailValidate();
 });
+function setError(index){
+    campos[index].style.border = '2px solid #ff0000';
+    spans[index].style.display = 'block';
+}
+function removeError(index){
+    campos[index].style.border = 'none';
+    spans[index].style.display = 'none';
+}
+function nameValidate(){
+    if(campos[0].value.length < 3 || campos[0].value == ''){
+        setError(0);
+    }
+    else{
+        removeError(0);
+    }
+}
+function emailValidate(){
+    if(!emailRegex.test(campos[1].value)){
+        setError(1);
+    }
+    else{
+        removeError(1);
+    }
+}

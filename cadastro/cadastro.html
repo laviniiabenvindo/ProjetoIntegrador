@@ -14,16 +14,19 @@
             <article>
                 <h1>Cadastro</h1>
                 <form id="form" action="#" method="post">
-                    <div id="erro"></div>
                     <div class="input">
                         <p>Nome completo</p>
-                        <input type="text">
+                        <input class="required" type="text" oninput="nameValidate()">
+                        <span class="obrigatorio">O nome deve ter mais de 3 dígitos</span>
                         <p>E-mail</p>
-                        <input type="email" name="email" id="email">
+                        <input class="required" type="text" name="email" oninput="emailValidate()">
+                        <span class="obrigatorio">Digite um email válido</span>
                         <p>Crie uma senha</p>
-                        <input type="password" name="password" id="password">
+                        <input class="required" type="password" name="password" oninput="mainPasswordValidate()">
+                        <span class="obrigatorio">Digite uma senha válida</span>
                         <p>Confirmar senha</p>
-                        <input type="password">
+                        <input class="required" type="password" oninput="comparePassword()">
+                        <span class="obrigatorio">Senha não compatível</span>
                     </div>
                 <button id="btn" type="submit">Cadastro</button>
                 </form>
@@ -40,5 +43,6 @@
             </div>
         </section>
     </main>
+    <script src="script.js"></script>
 </body>
 </html>

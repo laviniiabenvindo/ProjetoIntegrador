@@ -1,23 +1,53 @@
-const email = document.getElementById('email');
-const password = document.getElementById('password');
 const form = document.getElementById('form');
-const messageError = document.getElementById('erro');
+const campos = document.querySelectorAll('.required');
+const spans = document.querySelectorAll('.obrigatorio')
+const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
-form.addEventListener('submit', (event) => {
-    let messages = [];
-    let regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{10,16}$/;
-
-    if(email.value === '' || email.value === null){
-        messages.push('O campo e-mail é obrigatório');
-    }
-    else if(password.value.length <= 8){
-        messages.push('A senha tem que ter mais de 8 caracteres');
-    }
-    else if(!regex.test(password.value)){
-        messages.push('Precisa ter uma letra e maiúcula e minúscula, caractere especial e número');
-    }
-    else if(messages.length > 0){
-        event.preventDefault();
-        messageError.innerHTML = messages.join(''); 
-    }
+form.addEventListener('submit', (event)=>{
+    event.preventDefault();
+    nameValidate();
+    emailValidate();
+    mainPasswordValidate();
+    comparePassword();
 });
+function setError(index){
+    campos[index].style.border = '2px solid #ff0000';
+    spans[index].style.display = 'block';
+}
+function removeError(index){
+    campos[index].style.border = 'none';
+    spans[index].style.display = 'none';
+}
+function nameValidate(){
+    if(campos[0].value.length < 3 || campos[0].value == ''){
+        setError(0);
+    }
+    else{
+        removeError(0);
+    }
+}
+function emailValidate(){
+    if(!emailRegex.test(campos[1].value)){
+        setError(1);
+    }
+    else{
+        removeError(1);
+    }
+}
+function mainPasswordValidate(){
+    if(campos[2].value.length < 8){
+        setError(2);
+    }
+    else{
+        removeError(2);
+        comparePassword();
+    }
+}
+function comparePassword(){
+    if(campos[2].value == campos[3].value && campos[3].value.length >= 8){
+        removeError(3);
+    }
+    else{
+        setError(3);
+    }
+}
